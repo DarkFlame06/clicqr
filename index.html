@@ -1,186 +1,1187 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html><html>
-<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clicqr</title><style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CLICRQ — Wear the Statement</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f2ec;
+      --accent: #c8a46e;
+      --accent-dark: #9e7a46;
+      --muted: #3a3a3a;
+      --border: rgba(200, 164, 110, 0.2);
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
-}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body{
-background:linear-gradient(-45deg,#ff512f,#dd2476,#24c6dc,#514a9d);
-background-size:400% 400%;
-animation:gradientBG 12s ease infinite;
-color:white;
-}
+    html { scroll-behavior: smooth; }
 
-/* Animated background */
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: none;
+    }
 
-@keyframes gradientBG{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
-}
+    /* Custom Cursor */
+    .cursor {
+      position: fixed;
+      width: 12px; height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease, width 0.3s, height 0.3s, background 0.3s;
+    }
+    .cursor-ring {
+      position: fixed;
+      width: 40px; height: 40px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s ease, width 0.3s, height 0.3s;
+      opacity: 0.5;
+    }
+    body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height: 20px; background: var(--white); }
+    body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring { width: 60px; height: 60px; }
 
-/* Header */
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
 
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 40px;
-}
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.15em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.3s, color 0.3s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--accent); }
+    .nav-actions { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-icon { color: var(--white); opacity: 0.7; transition: opacity 0.3s, color 0.3s; cursor: pointer; font-size: 1.2rem; text-decoration: none; }
+    .nav-icon:hover { opacity: 1; color: var(--accent); }
+    .cart-badge {
+      position: relative;
+      display: inline-block;
+    }
+    .cart-badge::after {
+      content: '2';
+      position: absolute;
+      top: -6px; right: -8px;
+      background: var(--accent);
+      color: var(--black);
+      font-size: 0.6rem;
+      font-weight: 600;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow', sans-serif;
+    }
 
-.logo{
-font-size:28px;
-font-weight:bold;
-letter-spacing:2px;
-}
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8rem 4rem 6rem;
+      z-index: 2;
+      animation: fadeUp 1.2s ease forwards;
+      opacity: 0;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 9vw, 11rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      margin-bottom: 2rem;
+    }
+    .hero-title .outline {
+      -webkit-text-stroke: 1px var(--white);
+      color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 1rem;
+      line-height: 1.7;
+      opacity: 0.6;
+      max-width: 320px;
+      margin-bottom: 3rem;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--black);
+      background: var(--accent);
+      padding: 1rem 2.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.3s;
+      align-self: flex-start;
+    }
+    .hero-cta:hover { background: var(--white); transform: translateX(4px); }
+    .hero-cta svg { width: 16px; transition: transform 0.3s; }
+    .hero-cta:hover svg { transform: translateX(4px); }
 
-nav a{
-color:white;
-margin-left:20px;
-text-decoration:none;
-font-size:16px;
-}
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-image-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #1a1510 0%, #0d0d0d 60%, #1c1410 100%);
+    }
+    .hero-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 30% 40%, rgba(200,164,110,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, rgba(200,164,110,0.08) 0%, transparent 50%);
+    }
+    .hero-model-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-silhouette {
+      width: 55%;
+      opacity: 0.15;
+      animation: float 6s ease-in-out infinite;
+    }
+    .hero-tag {
+      position: absolute;
+      bottom: 6rem;
+      right: 4rem;
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      backdrop-filter: blur(8px);
+      background: rgba(10,10,10,0.6);
+      animation: fadeUp 1.4s 0.3s ease forwards;
+      opacity: 0;
+    }
+    .hero-tag-label { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.5; margin-bottom: 0.5rem; }
+    .hero-tag-value { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.1em; color: var(--accent); }
 
-/* Hero section */
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.4;
+      z-index: 3;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
 
-.hero{
-height:80vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
-animation:fadeUp 1.5s ease;
-}
+    /* ── MARQUEE ── */
+    .marquee-section {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      padding: 1rem 0;
+      background: var(--accent);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      animation: marquee 20s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-item {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.3em;
+      color: var(--black);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .marquee-dot { width: 6px; height: 6px; background: var(--black); border-radius: 50%; opacity: 0.5; }
 
-.hero h1{
-font-size:55px;
-margin-bottom:10px;
-}
+    /* ── FEATURED ── */
+    .section { padding: 7rem 4rem; }
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 4rem;
+    }
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      line-height: 1;
+      letter-spacing: 0.03em;
+    }
+    .section-link {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
+      transition: opacity 0.3s;
+    }
+    .section-link:hover { opacity: 0.6; }
 
-.hero p{
-font-size:18px;
-opacity:0.9;
-}
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .product-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      animation: fadeUp 0.8s ease forwards;
+      opacity: 0;
+    }
+    .product-card:nth-child(1) { animation-delay: 0.1s; }
+    .product-card:nth-child(2) { animation-delay: 0.2s; }
+    .product-card:nth-child(3) { animation-delay: 0.3s; }
+    .product-card:nth-child(4) { animation-delay: 0.4s; }
 
-.btn{
-margin-top:25px;
-padding:14px 28px;
-border:none;
-border-radius:30px;
-background:white;
-color:black;
-font-size:16px;
-cursor:pointer;
-transition:0.3s;
-}
+    .product-image {
+      aspect-ratio: 3/4;
+      background: var(--muted);
+      position: relative;
+      overflow: hidden;
+    }
+    .product-image-inner {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .product-card:hover .product-image-inner { transform: scale(1.06); }
 
-.btn:hover{
-transform:scale(1.1);
-}
+    /* Placeholder product image patterns */
+    .p1 .product-image-inner { background: linear-gradient(160deg, #1c1c1c 30%, #2a2520 100%); }
+    .p2 .product-image-inner { background: linear-gradient(160deg, #181818 30%, #20201a 100%); }
+    .p3 .product-image-inner { background: linear-gradient(160deg, #1a1a1a 30%, #252018 100%); }
+    .p4 .product-image-inner { background: linear-gradient(160deg, #161616 30%, #1e1e16 100%); }
 
-/* Animation */
+    .product-placeholder-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.06;
+      width: 60%;
+    }
 
-@keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(40px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
+    .product-badge {
+      position: absolute;
+      top: 1rem; left: 1rem;
+      background: var(--accent);
+      color: var(--black);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+    }
+    .product-badge.sold { background: var(--muted); color: var(--white); }
 
-/* Product section */
+    .product-actions {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+      display: flex;
+      gap: 0.5rem;
+    }
+    .product-card:hover .product-actions { transform: translateY(0); }
 
-.products{
-padding:60px 30px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
-}
+    .btn-add {
+      flex: 1;
+      padding: 0.7rem;
+      background: var(--accent);
+      color: var(--black);
+      border: none;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn-add:hover { background: var(--white); }
+    .btn-wish {
+      width: 40px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid var(--border);
+      color: var(--white);
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 1rem;
+    }
+    .btn-wish:hover { background: rgba(255,255,255,0.2); }
 
-.card{
-background:white;
-color:black;
-border-radius:12px;
-padding:20px;
-text-align:center;
-box-shadow:0 8px 20px rgba(0,0,0,0.2);
-transition:0.3s;
-}
+    .product-info { padding: 1rem 0 0.5rem; }
+    .product-name {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .product-meta { display: flex; justify-content: space-between; align-items: center; }
+    .product-price { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.08em; color: var(--accent); }
+    .product-price .old { font-size: 0.85rem; opacity: 0.4; text-decoration: line-through; margin-right: 0.5rem; color: var(--white); }
+    .product-colors { display: flex; gap: 0.3rem; }
+    .color-dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); }
 
-.card:hover{
-transform:translateY(-10px);
-}
+    /* ── FEATURE STRIP ── */
+    .feature-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .feature-item {
+      padding: 2.5rem 3rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      border-right: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .feature-item:last-child { border-right: none; }
+    .feature-item:hover { background: rgba(200,164,110,0.04); }
+    .feature-icon { font-size: 1.5rem; opacity: 0.8; flex-shrink: 0; margin-top: 2px; }
+    .feature-title { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .feature-desc { font-size: 0.75rem; opacity: 0.45; line-height: 1.6; }
 
-.card img{
-width:100%;
-border-radius:10px;
-}
+    /* ── EDITORIAL ── */
+    .editorial {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 80vh;
+      border-top: 1px solid var(--border);
+    }
+    .editorial-image {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #111 0%, #1a1510 100%);
+    }
+    .editorial-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 40% 50%, rgba(200,164,110,0.12) 0%, transparent 70%);
+    }
+    .editorial-grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(200,164,110,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,164,110,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .editorial-number {
+      position: absolute;
+      top: 4rem; left: 4rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 12rem;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.07;
+    }
+    .editorial-content {
+      padding: 6rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .editorial-content .section-label { margin-bottom: 1.5rem; }
+    .editorial-content .section-title { font-size: clamp(2.5rem, 4vw, 4.5rem); margin-bottom: 2rem; }
+    .editorial-body {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      opacity: 0.55;
+      margin-bottom: 3rem;
+      max-width: 400px;
+    }
+    .editorial-stats {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--accent); letter-spacing: 0.05em; }
+    .stat-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; opacity: 0.45; margin-top: 0.2rem; }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--white);
+      border: 1px solid var(--border);
+      padding: 1rem 2.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: border-color 0.3s, color 0.3s, background 0.3s;
+      align-self: flex-start;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-.card button{
-margin-top:10px;
-padding:10px 18px;
-background:#dd2476;
-border:none;
-color:white;
-border-radius:20px;
-cursor:pointer;
-}
+    /* ── CATEGORIES ── */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1rem;
+    }
+    .cat-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .cat-card:first-child { grid-row: span 2; }
+    .cat-image {
+      aspect-ratio: 4/5;
+      position: relative;
+      overflow: hidden;
+    }
+    .cat-card:first-child .cat-image { aspect-ratio: auto; height: 100%; }
+    .cat-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .cat-card:hover .cat-bg { transform: scale(1.05); }
+    .c1 .cat-bg { background: linear-gradient(160deg, #1e1a14 0%, #141210 100%); }
+    .c2 .cat-bg { background: linear-gradient(160deg, #161616 0%, #0e0e0e 100%); }
+    .c3 .cat-bg { background: linear-gradient(160deg, #191a14 0%, #111210 100%); }
+    .c4 .cat-bg { background: linear-gradient(160deg, #141418 0%, #0c0c10 100%); }
 
-/* Footer */
+    .cat-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 60%);
+    }
+    .cat-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2rem;
+    }
+    .cat-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .cat-card:first-child .cat-name { font-size: 3rem; }
+    .cat-count { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; opacity: 0.5; }
+    .cat-arrow {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      width: 36px; height: 36px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.3s, transform 0.3s;
+      font-size: 1rem;
+    }
+    .cat-card:hover .cat-arrow { opacity: 1; transform: translateY(0); }
 
-footer{
-text-align:center;
-padding:25px;
-background:rgba(0,0,0,0.3);
-}
+    /* ── NEWSLETTER ── */
+    .newsletter {
+      border-top: 1px solid var(--border);
+      padding: 7rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .newsletter-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 5vw, 5rem); line-height: 1; letter-spacing: 0.03em; margin-bottom: 1rem; }
+    .newsletter-sub { font-size: 0.9rem; opacity: 0.5; line-height: 1.7; }
+    .newsletter-form { display: flex; flex-direction: column; gap: 1rem; }
+    .input-group { position: relative; }
+    .newsletter-input {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 1rem 1.5rem;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .newsletter-input:focus { border-color: var(--accent); }
+    .newsletter-input::placeholder { opacity: 0.35; letter-spacing: 0.1em; font-size: 0.75rem; text-transform: uppercase; }
+    .btn-primary {
+      padding: 1rem 2.5rem;
+      background: var(--accent);
+      color: var(--black);
+      border: none;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+      align-self: flex-start;
+    }
+    .btn-primary:hover { background: var(--white); }
+    .newsletter-disclaimer { font-size: 0.65rem; opacity: 0.3; letter-spacing: 0.05em; }
 
-/* Mobile */
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 5rem 4rem 3rem;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .footer-brand .nav-logo { display: block; margin-bottom: 1rem; }
+    .footer-brand p { font-size: 0.8rem; opacity: 0.4; line-height: 1.8; max-width: 240px; }
+    .footer-social { display: flex; gap: 1rem; margin-top: 1.5rem; }
+    .social-link {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--white);
+      font-size: 0.75rem;
+      opacity: 0.5;
+      transition: opacity 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .social-link:hover { opacity: 1; border-color: var(--accent); color: var(--accent); }
+    .footer-col h4 {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+    .footer-col li a {
+      font-size: 0.8rem;
+      color: var(--white);
+      text-decoration: none;
+      opacity: 0.45;
+      letter-spacing: 0.05em;
+      transition: opacity 0.3s, color 0.3s;
+    }
+    .footer-col li a:hover { opacity: 1; color: var(--accent); }
 
-@media(max-width:768px){
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy { font-size: 0.7rem; opacity: 0.3; letter-spacing: 0.1em; }
+    .footer-payment { display: flex; gap: 0.5rem; }
+    .pay-badge {
+      padding: 0.3rem 0.6rem;
+      border: 1px solid var(--border);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      opacity: 0.4;
+    }
 
-.hero h1{
-font-size:34px;
-}
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-16px); }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 0.8; transform: scaleY(1.2); }
+    }
 
-nav{
-display:none;
-}
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav { padding: 1.5rem 2rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-image { display: none; }
+      .hero-text { padding: 10rem 2rem 6rem; }
+      .section { padding: 5rem 2rem; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .editorial { grid-template-columns: 1fr; }
+      .editorial-image { min-height: 400px; }
+      .newsletter { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .feature-strip { grid-template-columns: repeat(2, 1fr); }
+      .feature-item:nth-child(2) { border-right: none; }
+      .categories-grid { grid-template-columns: 1fr 1fr; }
+      .cat-card:first-child { grid-row: span 1; grid-column: span 2; }
+    }
 
-}
+    @media (max-width: 640px) {
+      .products-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .feature-strip { grid-template-columns: 1fr; }
+      .feature-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .footer-top { grid-template-columns: 1fr; }
+      .categories-grid { grid-template-columns: 1fr; }
+      .cat-card:first-child { grid-column: span 1; }
+      nav { padding: 1rem 1.5rem; }
+      .section { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
 
-</style></head><body><header><div class="logo">CLICQR</div><nav>
-<a href="#">Home</a>
-<a href="#">Shop</a>
-<a href="#">Contact</a>
-</nav></header><section class="hero"><h1>Luxury Fashion</h1>
-<p>Premium Clothing At Reasonable Prices</p><button class="btn">Shop Now</button>
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-</section><section class="products"><div class="card">
-<img src="https://via.placeholder.com/300">
-<h3>Oversized T-Shirt</h3>
-<p>₹499</p>
-<button>Buy</button>
-</div><div class="card">
-<img src="https://via.placeholder.com/300">
-<h3>Street Hoodie</h3>
-<p>₹999</p>
-<button>Buy</button>
-</div><div class="card">
-<img src="https://via.placeholder.com/300">
-<h3>Classic Shirt</h3>
-<p>₹799</p>
-<button>Buy</button>
-</div></section><footer>
-© 2026 Clicqr
-</footer></body>
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">CLICR<span>Q</span></a>
+    <ul class="nav-links">
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#categories">Collections</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#" class="nav-icon" title="Search">⌕</a>
+      <a href="#" class="nav-icon" title="Account">◯</a>
+      <a href="#" class="nav-icon cart-badge" title="Cart">⊞</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">SS 2026 Collection</p>
+      <h1 class="hero-title">
+        WEAR<br>
+        THE<br>
+        <span class="outline">STATE</span><br>
+        MENT
+      </h1>
+      <p class="hero-subtitle">Premium streetwear crafted for those who speak without words. Designed bold. Built to last.</p>
+      <a href="#shop" class="hero-cta">
+        Shop Now
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="hero-image">
+      <div class="hero-image-bg"></div>
+      <div class="hero-image-overlay"></div>
+      <div class="hero-model-placeholder">
+        <!-- Clothing silhouette SVG -->
+        <svg class="hero-silhouette" viewBox="0 0 200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 20 C80 20 60 35 50 55 L20 80 L40 95 L50 75 L50 280 L150 280 L150 75 L160 95 L180 80 L150 55 C140 35 120 20 100 20Z" fill="white"/>
+          <circle cx="100" cy="12" r="10" fill="white"/>
+        </svg>
+      </div>
+      <div class="hero-tag">
+        <p class="hero-tag-label">New Drop</p>
+        <p class="hero-tag-value">SS'26 ↗</p>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span class="marquee-item">NEW ARRIVALS <span class="marquee-dot"></span></span>
+      <span class="marquee-item">FREE SHIPPING ABOVE ₹999 <span class="marquee-dot"></span></span>
+      <span class="marquee-item">SUMMER SALE — 30% OFF <span class="marquee-dot"></span></span>
+      <span class="marquee-item">CLICRQ SS26 IS HERE <span class="marquee-dot"></span></span>
+      <span class="marquee-item">PREMIUM STREETWEAR <span class="marquee-dot"></span></span>
+      <span class="marquee-item">NEW ARRIVALS <span class="marquee-dot"></span></span>
+      <span class="marquee-item">FREE SHIPPING ABOVE ₹999 <span class="marquee-dot"></span></span>
+      <span class="marquee-item">SUMMER SALE — 30% OFF <span class="marquee-dot"></span></span>
+      <span class="marquee-item">CLICRQ SS26 IS HERE <span class="marquee-dot"></span></span>
+      <span class="marquee-item">PREMIUM STREETWEAR <span class="marquee-dot"></span></span>
+    </div>
+  </div>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="section" id="shop">
+    <div class="section-header">
+      <div>
+        <p class="section-label">Just Dropped</p>
+        <h2 class="section-title">New Arrivals</h2>
+      </div>
+      <a href="#" class="section-link">View All</a>
+    </div>
+    <div class="products-grid">
+      <!-- Product 1 -->
+      <div class="product-card p1">
+        <div class="product-image">
+          <div class="product-image-inner">
+            <svg class="product-placeholder-icon" viewBox="0 0 200 260" fill="white" xmlns="http://www.w3.org/2000/svg">
+              <rect x="30" y="60" width="140" height="180" rx="4"/>
+              <path d="M70 60 L70 30 Q100 10 130 30 L130 60"/>
+            </svg>
+          </div>
+          <div class="product-badge">New</div>
+          <div class="product-actions">
+            <button class="btn-add">Add to Cart</button>
+            <button class="btn-wish">♡</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-name">Void Oversized Tee</p>
+          <div class="product-meta">
+            <span class="product-price">₹1,299</span>
+            <div class="product-colors">
+              <div class="color-dot" style="background:#111"></div>
+              <div class="color-dot" style="background:#e5e0d5"></div>
+              <div class="color-dot" style="background:#7a6a5a"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Product 2 -->
+      <div class="product-card p2">
+        <div class="product-image">
+          <div class="product-image-inner">
+            <svg class="product-placeholder-icon" viewBox="0 0 200 260" fill="white" xmlns="http://www.w3.org/2000/svg">
+              <path d="M50 30 L150 30 L160 80 L160 240 L40 240 L40 80 Z"/>
+              <line x1="50" y1="30" x2="30" y2="80" stroke="white" stroke-width="12"/>
+              <line x1="150" y1="30" x2="170" y2="80" stroke="white" stroke-width="12"/>
+            </svg>
+          </div>
+          <div class="product-badge">Sale</div>
+          <div class="product-actions">
+            <button class="btn-add">Add to Cart</button>
+            <button class="btn-wish">♡</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-name">Apex Cargo Pants</p>
+          <div class="product-meta">
+            <span class="product-price"><span class="old">₹2,499</span>₹1,799</span>
+            <div class="product-colors">
+              <div class="color-dot" style="background:#2a2a2a"></div>
+              <div class="color-dot" style="background:#4a4a3a"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Product 3 -->
+      <div class="product-card p3">
+        <div class="product-image">
+          <div class="product-image-inner">
+            <svg class="product-placeholder-icon" viewBox="0 0 200 260" fill="white" xmlns="http://www.w3.org/2000/svg">
+              <path d="M40 20 Q100 0 160 20 L170 70 L130 60 L130 240 L70 240 L70 60 L30 70 Z"/>
+            </svg>
+          </div>
+          <div class="product-badge">Hot</div>
+          <div class="product-actions">
+            <button class="btn-add">Add to Cart</button>
+            <button class="btn-wish">♡</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-name">Drift Hoodie</p>
+          <div class="product-meta">
+            <span class="product-price">₹2,199</span>
+            <div class="product-colors">
+              <div class="color-dot" style="background:#111"></div>
+              <div class="color-dot" style="background:#1a1a2e"></div>
+              <div class="color-dot" style="background:#3a2a1a"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Product 4 -->
+      <div class="product-card p4">
+        <div class="product-image">
+          <div class="product-image-inner">
+            <svg class="product-placeholder-icon" viewBox="0 0 200 260" fill="white" xmlns="http://www.w3.org/2000/svg">
+              <rect x="50" y="20" width="100" height="100" rx="50"/>
+              <rect x="40" y="120" width="120" height="120" rx="4"/>
+            </svg>
+          </div>
+          <div class="product-badge sold">Sold Out</div>
+          <div class="product-actions">
+            <button class="btn-add" style="background:var(--muted);cursor:not-allowed">Notify Me</button>
+            <button class="btn-wish">♡</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-name">Stance Cap</p>
+          <div class="product-meta">
+            <span class="product-price">₹899</span>
+            <div class="product-colors">
+              <div class="color-dot" style="background:#0a0a0a;border-color:rgba(255,255,255,0.4)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE STRIP -->
+  <div class="feature-strip">
+    <div class="feature-item">
+      <div class="feature-icon">⇄</div>
+      <div>
+        <p class="feature-title">Free Returns</p>
+        <p class="feature-desc">30-day hassle-free returns on all orders</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">◈</div>
+      <div>
+        <p class="feature-title">Premium Quality</p>
+        <p class="feature-desc">Crafted from 100% sustainably sourced fabrics</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">⚡</div>
+      <div>
+        <p class="feature-title">Express Shipping</p>
+        <p class="feature-desc">Next-day delivery available across India</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">◎</div>
+      <div>
+        <p class="feature-title">Secure Payment</p>
+        <p class="feature-desc">UPI, cards, wallets — all encrypted</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDITORIAL / ABOUT -->
+  <section class="editorial" id="about">
+    <div class="editorial-image">
+      <div class="editorial-image-overlay"></div>
+      <div class="editorial-grid-lines"></div>
+      <div class="editorial-number">01</div>
+    </div>
+    <div class="editorial-content">
+      <p class="section-label">Our Story</p>
+      <h2 class="section-title">Designed for the<br>Bold. Built for All.</h2>
+      <p class="editorial-body">
+        Clicrq was born from the streets — a brand that doesn't follow trends, it sets them. Each piece is a conversation starter, a statement of identity, a refusal to be ordinary. We design for dreamers who do.
+      </p>
+      <div class="editorial-stats">
+        <div>
+          <p class="stat-value">12K+</p>
+          <p class="stat-label">Customers</p>
+        </div>
+        <div>
+          <p class="stat-value">50+</p>
+          <p class="stat-label">Styles</p>
+        </div>
+        <div>
+          <p class="stat-value">4.9★</p>
+          <p class="stat-label">Rating</p>
+        </div>
+      </div>
+      <a href="#" class="btn-outline">
+        Our Story
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="section" id="categories">
+    <div class="section-header">
+      <div>
+        <p class="section-label">Shop By</p>
+        <h2 class="section-title">Collections</h2>
+      </div>
+    </div>
+    <div class="categories-grid">
+      <div class="cat-card c1">
+        <div class="cat-image">
+          <div class="cat-bg"></div>
+          <div class="cat-overlay"></div>
+          <div class="cat-content">
+            <p class="cat-name">Oversized<br>Essentials</p>
+            <p class="cat-count">24 Pieces</p>
+          </div>
+          <div class="cat-arrow">↗</div>
+        </div>
+      </div>
+      <div class="cat-card c2">
+        <div class="cat-image">
+          <div class="cat-bg"></div>
+          <div class="cat-overlay"></div>
+          <div class="cat-content">
+            <p class="cat-name">Bottoms</p>
+            <p class="cat-count">18 Pieces</p>
+          </div>
+          <div class="cat-arrow">↗</div>
+        </div>
+      </div>
+      <div class="cat-card c3">
+        <div class="cat-image">
+          <div class="cat-bg"></div>
+          <div class="cat-overlay"></div>
+          <div class="cat-content">
+            <p class="cat-name">Hoodies</p>
+            <p class="cat-count">12 Pieces</p>
+          </div>
+          <div class="cat-arrow">↗</div>
+        </div>
+      </div>
+      <div class="cat-card c4">
+        <div class="cat-image">
+          <div class="cat-bg"></div>
+          <div class="cat-overlay"></div>
+          <div class="cat-content">
+            <p class="cat-name">Accessories</p>
+            <p class="cat-count">9 Pieces</p>
+          </div>
+          <div class="cat-arrow">↗</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter" id="contact">
+    <div>
+      <p class="section-label">Stay Connected</p>
+      <h2 class="newsletter-title">First to<br>Know. Always.</h2>
+      <p class="newsletter-sub">Drop alerts. Exclusive deals. No noise — just the good stuff. Join 12,000+ in the loop.</p>
+    </div>
+    <div class="newsletter-form">
+      <div class="input-group">
+        <input class="newsletter-input" type="text" placeholder="Your name" />
+      </div>
+      <div class="input-group">
+        <input class="newsletter-input" type="email" placeholder="your@email.com" />
+      </div>
+      <button class="btn-primary">Subscribe →</button>
+      <p class="newsletter-disclaimer">No spam. Unsubscribe anytime. We respect your privacy.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">CLICR<span>Q</span></a>
+        <p>Premium streetwear for those who speak through style. Born bold. Made for the streets.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" title="Instagram">Ig</a>
+          <a href="#" class="social-link" title="Twitter">Tw</a>
+          <a href="#" class="social-link" title="YouTube">Yt</a>
+          <a href="#" class="social-link" title="Pinterest">Pt</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Tees & Tops</a></li>
+          <li><a href="#">Bottoms</a></li>
+          <li><a href="#">Hoodies</a></li>
+          <li><a href="#">Accessories</a></li>
+          <li><a href="#">Sale</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Brand</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 CLICRQ. All rights reserved.</p>
+      <div class="footer-payment">
+        <span class="pay-badge">UPI</span>
+        <span class="pay-badge">VISA</span>
+        <span class="pay-badge">MC</span>
+        <span class="pay-badge">AMEX</span>
+        <span class="pay-badge">COD</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      setTimeout(() => {
+        ring.style.left = e.clientX + 'px';
+        ring.style.top = e.clientY + 'px';
+      }, 60);
+    });
+
+    // Scroll animation trigger
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.product-card').forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+
+    // Newsletter submit
+    document.querySelector('.btn-primary').addEventListener('click', function () {
+      const email = document.querySelectorAll('.newsletter-input')[1].value;
+      if (email && email.includes('@')) {
+        this.textContent = '✓ You\'re In!';
+        this.style.background = '#5a9a6a';
+        this.style.color = '#fff';
+        this.disabled = true;
+      } else {
+        this.textContent = 'Enter a valid email →';
+        setTimeout(() => { this.textContent = 'Subscribe →'; }, 2000);
+      }
+    });
+
+    // Cart button flash
+    document.querySelectorAll('.btn-add').forEach(btn => {
+      btn.addEventListener('click', function () {
+        if (this.disabled) return;
+        const orig = this.textContent;
+        this.textContent = '✓ Added!';
+        this.style.background = '#5a9a6a';
+        this.style.color = '#fff';
+        setTimeout(() => {
+          this.textContent = orig;
+          this.style.background = '';
+          this.style.color = '';
+        }, 1500);
+      });
+    });
+
+    // Wishlist toggle
+    document.querySelectorAll('.btn-wish').forEach(btn => {
+      btn.addEventListener('click', function () {
+        this.textContent = this.textContent === '♡' ? '♥' : '♡';
+        this.style.color = this.textContent === '♥' ? '#e07070' : '';
+      });
+    });
+  </script>
+</body>
 </html>
