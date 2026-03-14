@@ -2,15 +2,26 @@
 <html>
 <head>
 <title>Clicqr</title>
+
 <style>
 body{
-font-family: Arial;
-text-align:center;
+margin:0;
+font-family:Arial;
 background:#f5f5f5;
 }
 
-h1{
-color:black;
+header{
+background:black;
+color:white;
+padding:20px;
+text-align:center;
+font-size:24px;
+}
+
+.hero{
+text-align:center;
+padding:80px 20px;
+background:white;
 }
 
 button{
@@ -19,16 +30,72 @@ background:black;
 color:white;
 border:none;
 font-size:16px;
+cursor:pointer;
+}
+
+.products{
+display:flex;
+justify-content:center;
+gap:30px;
+padding:40px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:8px;
+width:200px;
+text-align:center;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+footer{
+text-align:center;
+padding:20px;
+background:black;
+color:white;
 }
 </style>
+
 </head>
 
 <body>
 
-<h1>CLICQR</h1>
-<p>Luxury Fashion At Reasonable Prices</p>
+<header>
+CLICQR
+</header>
 
+<section class="hero">
+<h1>Luxury Fashion</h1>
+<p>Premium Clothing At Reasonable Prices</p>
 <button>Shop Now</button>
+</section>
+
+<section class="products">
+
+<div class="card">
+<h3>Oversized T-Shirt</h3>
+<p>₹499</p>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<h3>Street Hoodie</h3>
+<p>₹999</p>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<h3>Classic Shirt</h3>
+<p>₹799</p>
+<button>Buy</button>
+</div>
+
+</section>
+
+<footer>
+© 2026 Clicqr
+</footer>
 
 </body>
 </html>
