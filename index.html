@@ -2,445 +2,607 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Clicqr — A new fashion brand built for the bold. Discover our debut clothing collection." />
-  <title>Clicqr — New Arrival. Bold by Nature.</title>
+  <!-- CRITICAL: viewport tag ensures mobile renders at device width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Clicqr — A fresh new clothing brand. Bold pieces for bold people. Launching 2026." />
+  <meta name="theme-color" content="#ffffff" />
+  <title>Clicqr — New Fashion Brand Launching 2026</title>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,700;1,300;1,500;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ══════════════════════════════
-       LOADER
-  ══════════════════════════════ -->
-  <div id="loader" aria-hidden="true">
-    <div class="loader-logo">Clicqr</div>
-    <div class="loader-bar"><span></span></div>
+  <!-- ═══════════════════════════════
+       SKIP LINK (accessibility)
+  ═══════════════════════════════ -->
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- ═══════════════════════════════
+       ANNOUNCEMENT BAR
+  ═══════════════════════════════ -->
+  <div class="ann-bar" role="banner">
+    <div class="ann-ticker">
+      <span>Launching 2026 &nbsp;·&nbsp;</span>
+      <span>New Brand, Fresh Start &nbsp;·&nbsp;</span>
+      <span>Designed in India &nbsp;·&nbsp;</span>
+      <span>Debut Collection Coming Soon &nbsp;·&nbsp;</span>
+      <span>Launching 2026 &nbsp;·&nbsp;</span>
+      <span>New Brand, Fresh Start &nbsp;·&nbsp;</span>
+      <span>Designed in India &nbsp;·&nbsp;</span>
+      <span>Debut Collection Coming Soon &nbsp;·&nbsp;</span>
+    </div>
   </div>
 
-  <!-- ══════════════════════════════
+  <!-- ═══════════════════════════════
        NAVIGATION
-  ══════════════════════════════ -->
-  <header id="navbar">
-    <nav class="nav-inner container">
-      <a href="#home" class="nav-logo" aria-label="Clicqr Home">Clicqr</a>
+  ═══════════════════════════════ -->
+  <header id="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <div class="nav-container">
 
-      <ul class="nav-links" id="navLinks" role="list">
-        <li><a href="#home"     class="nav-link active">Home</a></li>
-        <li><a href="#shop"     class="nav-link">Shop</a></li>
-        <li><a href="#about"    class="nav-link">About</a></li>
-        <li><a href="#contact"  class="nav-link">Contact</a></li>
-      </ul>
+        <!-- Logo -->
+        <a href="#home" class="nav-logo" aria-label="Clicqr — home">
+          <span class="logo-text">Clicqr</span>
+        </a>
 
-      <div class="nav-actions">
-        <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-          Get Notified
-        </button>
-        <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
+        <!-- Desktop links -->
+        <ul class="nav-links" role="list" id="navLinks">
+          <li><a href="#home"    class="nav-link" data-nav>Home</a></li>
+          <li><a href="#shop"    class="nav-link" data-nav>Shop</a></li>
+          <li><a href="#about"   class="nav-link" data-nav>About</a></li>
+          <li><a href="#contact" class="nav-link" data-nav>Contact</a></li>
+        </ul>
+
+        <!-- Actions -->
+        <div class="nav-actions">
+          <a href="#contact" class="btn btn-nav" aria-label="Get notified at launch">
+            Get Notified
+          </a>
+          <!-- Hamburger (mobile only) -->
+          <button
+            class="hamburger"
+            id="hamburger"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="mobileNav"
+          >
+            <span class="hbg-bar"></span>
+            <span class="hbg-bar"></span>
+            <span class="hbg-bar"></span>
+          </button>
+        </div>
+
       </div>
     </nav>
   </header>
 
-  <!-- Mobile full-screen menu -->
-  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu">
-    <ul role="list">
-      <li><a href="#home"    class="mm-link" data-close>Home</a></li>
-      <li><a href="#shop"    class="mm-link" data-close>Shop</a></li>
-      <li><a href="#about"   class="mm-link" data-close>About</a></li>
-      <li><a href="#contact" class="mm-link" data-close>Contact</a></li>
-    </ul>
-    <p class="mm-tagline">Bold by Nature.</p>
+  <!-- ═══════════════════════════════
+       MOBILE DRAWER NAV
+  ═══════════════════════════════ -->
+  <div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Navigation" aria-hidden="true">
+    <div class="mn-backdrop" id="mnBackdrop" aria-hidden="true"></div>
+    <div class="mn-panel">
+      <div class="mn-header">
+        <span class="logo-text mn-logo">Clicqr</span>
+        <button class="mn-close" id="mnClose" aria-label="Close menu">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+            <path d="M2 2l18 18M20 2L2 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <nav aria-label="Mobile navigation">
+        <ul class="mn-links" role="list">
+          <li><a href="#home"    class="mn-link" data-close-nav>Home</a></li>
+          <li><a href="#shop"    class="mn-link" data-close-nav>Shop</a></li>
+          <li><a href="#about"   class="mn-link" data-close-nav>About</a></li>
+          <li><a href="#contact" class="mn-link" data-close-nav>Contact</a></li>
+        </ul>
+      </nav>
+      <div class="mn-footer">
+        <a href="#contact" class="btn btn-primary btn-full" data-close-nav>
+          Get Launch Notification
+        </a>
+        <p class="mn-sub">New brand. Launching 2026.</p>
+      </div>
+    </div>
   </div>
 
-  <main>
+  <!-- ═══════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════ -->
+  <main id="main">
 
-    <!-- ══════════════════════════════
-         HERO
-    ══════════════════════════════ -->
-    <section id="home" class="hero">
-      <!-- animated background orbs -->
-      <div class="hero-orb orb1" aria-hidden="true"></div>
-      <div class="hero-orb orb2" aria-hidden="true"></div>
-      <div class="hero-orb orb3" aria-hidden="true"></div>
+    <!-- ─── HERO ───────────────────────── -->
+    <section id="home" class="hero" aria-label="Hero — Brand introduction">
 
-      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <!-- Decorative blobs (CSS-only, aria-hidden) -->
+      <div class="hero-blob blob-1" aria-hidden="true"></div>
+      <div class="hero-blob blob-2" aria-hidden="true"></div>
+      <div class="hero-blob blob-3" aria-hidden="true"></div>
 
-      <div class="container hero-content">
+      <div class="hero-container">
+        <!-- Text column -->
         <div class="hero-text">
-          <span class="hero-badge animate-fade-up" style="--d:.1s">
-            <span class="badge-dot"></span> Now Launching — SS 2026
-          </span>
-          <h1 class="hero-h1 animate-fade-up" style="--d:.25s">
+          <div class="hero-eyebrow reveal">
+            <span class="eyebrow-dot"></span>
+            Now Launching — SS 2026
+          </div>
+          <h1 class="hero-h1 reveal" style="--rd:.1s">
             Fashion<br>
             <em>Reimagined</em><br>
             for the Bold.
           </h1>
-          <p class="hero-body animate-fade-up" style="--d:.4s">
-            Clicqr is a fresh fashion label stepping into the scene with debut pieces crafted for those who refuse to blend in. Our first collection drops soon.
+          <p class="hero-body reveal" style="--rd:.2s">
+            Clicqr is a brand-new clothing label stepping onto the scene in 2026.
+            Our debut collection is crafted for people who move with confidence and style.
           </p>
-          <div class="hero-btns animate-fade-up" style="--d:.55s">
-            <a href="#shop"    class="btn btn-primary">Explore Collection</a>
-            <a href="#about"   class="btn btn-ghost">Our Story</a>
+          <div class="hero-ctas reveal" style="--rd:.3s">
+            <a href="#shop"  class="btn btn-primary">Explore Collection</a>
+            <a href="#about" class="btn btn-outline">Our Story</a>
+          </div>
+
+          <!-- Floating stat chips -->
+          <div class="hero-chips reveal" style="--rd:.4s" aria-label="Brand highlights">
+            <div class="chip">
+              <span class="chip-icon">✦</span>
+              <span>Debut Drop</span>
+            </div>
+            <div class="chip">
+              <span class="chip-icon">◎</span>
+              <span>Made in India</span>
+            </div>
+            <div class="chip">
+              <span class="chip-icon">⬡</span>
+              <span>Launching 2026</span>
+            </div>
           </div>
         </div>
 
-        <div class="hero-visual animate-fade-up" style="--d:.35s" aria-hidden="true">
-          <div class="hero-card-stack">
-            <div class="hero-card hc1">
-              <div class="hc-inner">
-                <svg viewBox="0 0 180 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M90 30 C72 30 54 42 46 58 L14 82 L34 98 L44 78 L44 196 L136 196 L136 78 L146 98 L166 82 L134 58 C126 42 108 30 90 30Z" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+        <!-- Visual column -->
+        <div class="hero-visual reveal" style="--rd:.15s" aria-hidden="true">
+          <div class="hero-card-wrap">
+
+            <!-- Three stacked garment preview cards -->
+            <div class="hero-card hcard-a">
+              <div class="hcard-inner">
+                <svg viewBox="0 0 140 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M70 22C56 22 42 31 36 44L10 64 23 75 30 58 30 162 110 162 110 58 117 75 130 64 104 44C98 31 84 22 70 22Z"
+                    fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.9)" stroke-width="1.5"/>
+                  <rect x="48" y="78" width="44" height="3" rx="1.5" fill="rgba(255,255,255,.7)"/>
                 </svg>
               </div>
+              <div class="hcard-label">Oversized Tee</div>
             </div>
-            <div class="hero-card hc2">
-              <div class="hc-inner">
-                <svg viewBox="0 0 160 210" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="30" y="18" width="100" height="174" rx="4" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
-                  <line x1="30" y1="60" x2="130" y2="60" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
-                  <rect x="40" y="80" width="28" height="36" rx="2" fill="rgba(255,255,255,.08)"/>
+
+            <div class="hero-card hcard-b">
+              <div class="hcard-inner">
+                <svg viewBox="0 0 140 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M22 14Q70 4 118 14L130 52L100 43 100 166 40 166 40 43 10 52Z"
+                    fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.9)" stroke-width="1.5"/>
+                  <rect x="40" y="62" width="60" height="3" rx="1.5" fill="rgba(255,255,255,.7)"/>
                 </svg>
               </div>
+              <div class="hcard-label">Drop Hoodie</div>
             </div>
-            <div class="hero-card hc3">
-              <div class="hc-inner">
-                <svg viewBox="0 0 170 215" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M24 18 Q85 5 146 18 L158 68 L118 58 L118 198 L52 198 L52 58 L12 68 Z" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
-                  <rect x="52" y="82" width="66" height="5" rx="2.5" fill="rgba(255,255,255,.15)"/>
+
+            <div class="hero-card hcard-c">
+              <div class="hcard-inner">
+                <svg viewBox="0 0 140 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="22" y="16" width="96" height="148" rx="5"
+                    fill="rgba(255,255,255,.5)" stroke="rgba(255,255,255,.9)" stroke-width="1.5"/>
+                  <rect x="32" y="68" width="28" height="34" rx="3" fill="rgba(255,255,255,.35)"/>
+                  <rect x="22" y="54" width="96" height="2" fill="rgba(255,255,255,.5)"/>
                 </svg>
               </div>
+              <div class="hcard-label">Cargo Pant</div>
             </div>
-            <div class="hero-float-tag" aria-hidden="true">
-              <span>Debut Drop</span>
-              <strong>SS 2026</strong>
+
+            <!-- Floating badge -->
+            <div class="hbadge">
+              <span class="hbadge-top">Debut Collection</span>
+              <strong class="hbadge-main">SS '26</strong>
             </div>
+
           </div>
         </div>
       </div>
 
-      <div class="hero-scroll-hint" aria-label="Scroll down">
+      <!-- Scroll indicator -->
+      <div class="scroll-hint" aria-hidden="true">
         <div class="scroll-line"></div>
         <span>Scroll</span>
       </div>
     </section>
 
-    <!-- ══════════════════════════════
-         ANNOUNCEMENT TICKER
-    ══════════════════════════════ -->
+    <!-- ─── TICKER ─────────────────────── -->
     <div class="ticker" aria-hidden="true">
       <div class="ticker-track">
-        <span class="ticker-item">New Brand Launch <em>·</em></span>
-        <span class="ticker-item">Debut Collection 2026 <em>·</em></span>
-        <span class="ticker-item">Designed in India <em>·</em></span>
-        <span class="ticker-item">Bold. Fresh. Unapologetic. <em>·</em></span>
-        <span class="ticker-item">Free Shipping on First Orders <em>·</em></span>
-        <span class="ticker-item">New Brand Launch <em>·</em></span>
-        <span class="ticker-item">Debut Collection 2026 <em>·</em></span>
-        <span class="ticker-item">Designed in India <em>·</em></span>
-        <span class="ticker-item">Bold. Fresh. Unapologetic. <em>·</em></span>
-        <span class="ticker-item">Free Shipping on First Orders <em>·</em></span>
+        <span class="t-item">New Brand&nbsp; <em>·</em></span>
+        <span class="t-item">Debut Collection 2026&nbsp; <em>·</em></span>
+        <span class="t-item">Bold by Design&nbsp; <em>·</em></span>
+        <span class="t-item">Made in India&nbsp; <em>·</em></span>
+        <span class="t-item">Free Shipping on First Order&nbsp; <em>·</em></span>
+        <span class="t-item">New Brand&nbsp; <em>·</em></span>
+        <span class="t-item">Debut Collection 2026&nbsp; <em>·</em></span>
+        <span class="t-item">Bold by Design&nbsp; <em>·</em></span>
+        <span class="t-item">Made in India&nbsp; <em>·</em></span>
+        <span class="t-item">Free Shipping on First Order&nbsp; <em>·</em></span>
       </div>
     </div>
 
-    <!-- ══════════════════════════════
-         SHOP / PRODUCTS
-    ══════════════════════════════ -->
-    <section id="shop" class="section products-section">
-      <div class="container">
-        <div class="section-header reveal">
-          <div>
-            <p class="section-eye">The Collection</p>
-            <h2 class="section-title">Debut Pieces</h2>
-          </div>
-          <p class="section-sub">
-            Our debut lineup — each piece crafted to make a statement. Prices and availability will be announced at launch.
+    <!-- ─── SHOP / PRODUCTS ────────────── -->
+    <section id="shop" class="section products-section" aria-labelledby="shop-heading">
+      <div class="section-container">
+
+        <header class="section-header reveal">
+          <div class="section-label">The Collection</div>
+          <h2 class="section-title" id="shop-heading">Debut Pieces</h2>
+          <p class="section-desc">
+            Our very first lineup — every piece designed to make an impression.
+            Pricing and full details revealed on launch day.
           </p>
-        </div>
+        </header>
 
-        <div class="products-grid">
+        <!-- Product grid — 1 col mobile → 2 col tablet → 4 col desktop -->
+        <div class="products-grid" role="list">
 
-          <!-- Product 1 -->
-          <article class="pcard reveal" style="--rd:.1s">
-            <div class="pcard-img" data-label="Unisex">
-              <div class="pcard-canvas pc-violet">
-                <svg class="garment-svg" viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M80 24C64 24 48 34 42 48L14 70 28 82 36 64 36 180 124 180 124 64 132 82 146 70 118 48C112 34 96 24 80 24Z" fill="rgba(255,255,255,.14)" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
-                  <rect x="58" y="88" width="44" height="3" rx="1.5" fill="rgba(255,255,255,.2)"/>
+          <!-- Card 1 -->
+          <article class="pcard reveal" style="--rd:.05s" role="listitem">
+            <div class="pcard-img">
+              <div class="pcard-canvas pc-grape">
+                <svg class="pcard-svg" viewBox="0 0 130 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M65 20C52 20 39 28 33 40L10 58 21 68 28 53 28 152 102 152 102 53 109 68 120 58 97 40C91 28 78 20 65 20Z"
+                    fill="rgba(255,255,255,.22)" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/>
+                  <rect x="45" y="72" width="40" height="3" rx="1.5" fill="rgba(255,255,255,.35)"/>
                 </svg>
               </div>
               <div class="pcard-overlay">
-                <button class="pcard-btn-wish" aria-label="Save to wishlist">♡</button>
+                <button class="wish-btn" aria-label="Save Origin Oversized to wishlist">♡</button>
               </div>
+              <span class="pcard-tag">Unisex</span>
             </div>
             <div class="pcard-body">
-              <span class="pcard-tag">Oversized Tee</span>
+              <p class="pcard-cat">Oversized Tee</p>
               <h3 class="pcard-name">Origin Oversized</h3>
-              <div class="pcard-foot">
+              <div class="pcard-footer">
                 <span class="pcard-price">Coming Soon</span>
-                <button class="pcard-notify" data-product="Origin Oversized">Notify Me</button>
+                <button class="notify-btn" data-product="Origin Oversized">Notify Me</button>
               </div>
             </div>
           </article>
 
-          <!-- Product 2 -->
-          <article class="pcard reveal" style="--rd:.2s">
-            <div class="pcard-img" data-label="Limited">
+          <!-- Card 2 -->
+          <article class="pcard reveal" style="--rd:.1s" role="listitem">
+            <div class="pcard-img">
               <div class="pcard-canvas pc-coral">
-                <svg class="garment-svg" viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="28" y="18" width="104" height="162" rx="4" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.28)" stroke-width="1.5"/>
-                  <line x1="28" y1="62" x2="132" y2="62" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
-                  <rect x="38" y="78" width="30" height="38" rx="3" fill="rgba(255,255,255,.1)"/>
-                  <rect x="38" y="124" width="30" height="10" rx="2" fill="rgba(255,255,255,.08)"/>
-                  <rect x="78" y="124" width="46" height="10" rx="2" fill="rgba(255,255,255,.08)"/>
+                <svg class="pcard-svg" viewBox="0 0 130 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="22" y="15" width="86" height="140" rx="4"
+                    fill="rgba(255,255,255,.22)" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/>
+                  <rect x="22" y="50" width="86" height="2" fill="rgba(255,255,255,.35)"/>
+                  <rect x="32" y="66" width="24" height="30" rx="3" fill="rgba(255,255,255,.2)"/>
+                  <rect x="32" y="104" width="24" height="8" rx="2" fill="rgba(255,255,255,.2)"/>
+                  <rect x="62" y="104" width="38" height="8" rx="2" fill="rgba(255,255,255,.2)"/>
                 </svg>
               </div>
               <div class="pcard-overlay">
-                <button class="pcard-btn-wish" aria-label="Save to wishlist">♡</button>
+                <button class="wish-btn" aria-label="Save Axis Cargo to wishlist">♡</button>
               </div>
+              <span class="pcard-tag pcard-tag--limited">Limited</span>
             </div>
             <div class="pcard-body">
-              <span class="pcard-tag">Cargo</span>
-              <h3 class="pcard-name">Axis Cargo Pant</h3>
-              <div class="pcard-foot">
+              <p class="pcard-cat">Cargo Pants</p>
+              <h3 class="pcard-name">Axis Cargo</h3>
+              <div class="pcard-footer">
                 <span class="pcard-price">Coming Soon</span>
-                <button class="pcard-notify" data-product="Axis Cargo Pant">Notify Me</button>
+                <button class="notify-btn" data-product="Axis Cargo">Notify Me</button>
               </div>
             </div>
           </article>
 
-          <!-- Product 3 -->
-          <article class="pcard reveal" style="--rd:.3s">
-            <div class="pcard-img" data-label="Signature">
-              <div class="pcard-canvas pc-teal">
-                <svg class="garment-svg" viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M26 14 Q80 4 134 14 L148 58 L114 48 L114 186 L46 186 L46 48 L12 58Z" fill="rgba(255,255,255,.13)" stroke="rgba(255,255,255,.28)" stroke-width="1.5"/>
-                  <rect x="46" y="70" width="68" height="4" rx="2" fill="rgba(255,255,255,.18)"/>
-                  <circle cx="80" cy="94" r="8" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+          <!-- Card 3 -->
+          <article class="pcard reveal" style="--rd:.15s" role="listitem">
+            <div class="pcard-img">
+              <div class="pcard-canvas pc-sky">
+                <svg class="pcard-svg" viewBox="0 0 130 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M20 12Q65 2 110 12L122 48L92 40 92 158 38 158 38 40 8 48Z"
+                    fill="rgba(255,255,255,.22)" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/>
+                  <rect x="38" y="58" width="54" height="3" rx="1.5" fill="rgba(255,255,255,.35)"/>
+                  <circle cx="65" cy="80" r="8" fill="rgba(255,255,255,.18)" stroke="rgba(255,255,255,.45)" stroke-width="1"/>
                 </svg>
               </div>
               <div class="pcard-overlay">
-                <button class="pcard-btn-wish" aria-label="Save to wishlist">♡</button>
+                <button class="wish-btn" aria-label="Save Surge Hoodie to wishlist">♡</button>
               </div>
+              <span class="pcard-tag">Signature</span>
             </div>
             <div class="pcard-body">
-              <span class="pcard-tag">Hoodie</span>
-              <h3 class="pcard-name">Surge Pullover</h3>
-              <div class="pcard-foot">
+              <p class="pcard-cat">Pullover Hoodie</p>
+              <h3 class="pcard-name">Surge Hoodie</h3>
+              <div class="pcard-footer">
                 <span class="pcard-price">Coming Soon</span>
-                <button class="pcard-notify" data-product="Surge Pullover">Notify Me</button>
+                <button class="notify-btn" data-product="Surge Hoodie">Notify Me</button>
               </div>
             </div>
           </article>
 
-          <!-- Product 4 -->
-          <article class="pcard reveal" style="--rd:.4s">
-            <div class="pcard-img" data-label="Unisex">
-              <div class="pcard-canvas pc-amber">
-                <svg class="garment-svg" viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M38 18 L62 8 L98 8 L122 18 L122 186 L38 186Z" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.28)" stroke-width="1.5"/>
-                  <line x1="80" y1="8" x2="80" y2="186" stroke="rgba(255,255,255,.1)" stroke-width="1" stroke-dasharray="4 4"/>
-                  <rect x="38" y="18" width="84" height="2" fill="rgba(255,255,255,.2)"/>
+          <!-- Card 4 -->
+          <article class="pcard reveal" style="--rd:.2s" role="listitem">
+            <div class="pcard-img">
+              <div class="pcard-canvas pc-peach">
+                <svg class="pcard-svg" viewBox="0 0 130 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M32 16L52 8 78 8 98 16 98 158 32 158Z"
+                    fill="rgba(255,255,255,.22)" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/>
+                  <line x1="65" y1="8" x2="65" y2="158" stroke="rgba(255,255,255,.18)" stroke-width="1" stroke-dasharray="4 4"/>
+                  <rect x="32" y="16" width="66" height="2" fill="rgba(255,255,255,.4)"/>
                 </svg>
               </div>
               <div class="pcard-overlay">
-                <button class="pcard-btn-wish" aria-label="Save to wishlist">♡</button>
+                <button class="wish-btn" aria-label="Save Flux Jacket to wishlist">♡</button>
               </div>
+              <span class="pcard-tag">Unisex</span>
             </div>
             <div class="pcard-body">
-              <span class="pcard-tag">Jacket</span>
-              <h3 class="pcard-name">Flux Zip-Up</h3>
-              <div class="pcard-foot">
+              <p class="pcard-cat">Zip Jacket</p>
+              <h3 class="pcard-name">Flux Jacket</h3>
+              <div class="pcard-footer">
                 <span class="pcard-price">Coming Soon</span>
-                <button class="pcard-notify" data-product="Flux Zip-Up">Notify Me</button>
+                <button class="notify-btn" data-product="Flux Jacket">Notify Me</button>
               </div>
             </div>
           </article>
 
         </div><!-- /products-grid -->
 
-        <div class="products-footer reveal">
-          <p>Full sizing, pricing and availability revealed on launch day.</p>
-          <a href="#contact" class="btn btn-primary">Join the Launch List</a>
+        <div class="products-cta reveal">
+          <p>Full pricing, sizing and availability revealed on launch day.</p>
+          <a href="#contact" class="btn btn-outline-dark">Join the Launch List</a>
         </div>
 
       </div>
     </section>
 
-    <!-- ══════════════════════════════
-         ABOUT
-    ══════════════════════════════ -->
-    <section id="about" class="section about-section">
-      <div class="container about-grid">
+    <!-- ─── ABOUT ──────────────────────── -->
+    <section id="about" class="section about-section" aria-labelledby="about-heading">
+      <div class="section-container">
+        <div class="about-grid">
 
-        <div class="about-visual reveal">
-          <div class="about-art">
-            <div class="aa-ring r1" aria-hidden="true"></div>
-            <div class="aa-ring r2" aria-hidden="true"></div>
-            <div class="aa-ring r3" aria-hidden="true"></div>
-            <div class="aa-center" aria-hidden="true">
-              <span>Clicqr</span>
-            </div>
-            <div class="aa-pill p1" aria-hidden="true">New Brand</div>
-            <div class="aa-pill p2" aria-hidden="true">SS 2026</div>
-            <div class="aa-pill p3" aria-hidden="true">India</div>
-          </div>
-        </div>
-
-        <div class="about-content reveal">
-          <p class="section-eye">Who We Are</p>
-          <h2 class="section-title">We're Just Getting Started.</h2>
-          <p class="about-body">
-            Clicqr is a brand-new clothing label launching in 2026. We're building something from the ground up — designing pieces for people who want to stand out, not fit in.
-          </p>
-          <p class="about-body">
-            No legacy. No heritage story to borrow from. Just a fresh perspective on fashion, a commitment to quality materials, and a clear vision: clothing that feels as bold as the people wearing it.
-          </p>
-          <p class="about-body">
-            We're at the very beginning of this journey, and we'd love for you to be part of it from day one.
-          </p>
-          <div class="about-values">
-            <div class="av-item">
-              <div class="av-icon">◈</div>
-              <div>
-                <strong>Quality First</strong>
-                <span>Fabrics chosen with care</span>
-              </div>
-            </div>
-            <div class="av-item">
-              <div class="av-icon">◎</div>
-              <div>
-                <strong>Bold by Design</strong>
-                <span>Pieces made to stand out</span>
-              </div>
-            </div>
-            <div class="av-item">
-              <div class="av-icon">◉</div>
-              <div>
-                <strong>Made in India</strong>
-                <span>Proudly homegrown</span>
-              </div>
+          <!-- Visual -->
+          <div class="about-visual reveal" aria-hidden="true">
+            <div class="about-art">
+              <div class="aa-ring r1"></div>
+              <div class="aa-ring r2"></div>
+              <div class="aa-ring r3"></div>
+              <div class="aa-logo">Clicqr</div>
+              <div class="aa-chip chip-a">New Brand</div>
+              <div class="aa-chip chip-b">SS 2026</div>
+              <div class="aa-chip chip-c">India</div>
             </div>
           </div>
-        </div>
 
+          <!-- Content -->
+          <div class="about-content">
+            <div class="section-label reveal">Who We Are</div>
+            <h2 class="section-title reveal" style="--rd:.05s" id="about-heading">
+              We're Just Getting Started.
+            </h2>
+            <div class="about-body reveal" style="--rd:.1s">
+              <p>
+                Clicqr is a brand-new clothing label launching in 2026. We're building from
+                scratch — designing pieces for people who want to stand out, not blend in.
+              </p>
+              <p>
+                No borrowed heritage, no legacy to lean on. Just a fresh perspective on fashion,
+                a commitment to quality, and a clear vision: clothing as bold as the people who wear it.
+              </p>
+              <p>
+                We're at the very start of this journey, and we'd love for you to be part of it from day one.
+              </p>
+            </div>
+
+            <div class="about-values reveal" style="--rd:.15s">
+              <div class="av-card">
+                <div class="av-icon av-icon--grape">◈</div>
+                <div class="av-text">
+                  <strong>Quality First</strong>
+                  <span>Fabrics chosen with real care</span>
+                </div>
+              </div>
+              <div class="av-card">
+                <div class="av-icon av-icon--coral">◎</div>
+                <div class="av-text">
+                  <strong>Bold by Design</strong>
+                  <span>Every piece made to stand out</span>
+                </div>
+              </div>
+              <div class="av-card">
+                <div class="av-icon av-icon--sky">⬡</div>
+                <div class="av-text">
+                  <strong>Made in India</strong>
+                  <span>Proudly homegrown from day one</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
-    <!-- ══════════════════════════════
-         CTA
-    ══════════════════════════════ -->
-    <section class="cta-section reveal">
-      <div class="cta-orb cta-o1" aria-hidden="true"></div>
-      <div class="cta-orb cta-o2" aria-hidden="true"></div>
-      <div class="container cta-inner">
-        <p class="section-eye" style="justify-content:center">Launch Day Is Coming</p>
-        <h2 class="cta-h2">Be the First to Wear Clicqr.</h2>
+    <!-- ─── CALL TO ACTION ─────────────── -->
+    <section class="cta-section reveal" aria-labelledby="cta-heading">
+      <div class="cta-bg" aria-hidden="true">
+        <div class="cta-blob cb1"></div>
+        <div class="cta-blob cb2"></div>
+      </div>
+      <div class="section-container cta-inner">
+        <div class="section-label" style="justify-content:center">Launch Day Is Coming</div>
+        <h2 class="cta-h2" id="cta-heading">Be the First<br>to Wear Clicqr.</h2>
         <p class="cta-sub">
-          Sign up and be first in line when our debut collection goes live. Early supporters get exclusive first-access pricing.
+          Sign up for early access and be first in line when our debut collection goes live.
+          Early supporters get exclusive first-access pricing.
         </p>
         <a href="#contact" class="btn btn-primary btn-lg">
           Get Early Access
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </a>
       </div>
     </section>
 
-    <!-- ══════════════════════════════
-         CONTACT
-    ══════════════════════════════ -->
-    <section id="contact" class="section contact-section">
-      <div class="container contact-grid">
+    <!-- ─── CONTACT ────────────────────── -->
+    <section id="contact" class="section contact-section" aria-labelledby="contact-heading">
+      <div class="section-container">
+        <div class="contact-grid">
 
-        <div class="contact-left reveal">
-          <p class="section-eye">Get In Touch</p>
-          <h2 class="section-title">Stay Connected.</h2>
-          <p class="contact-sub">
-            Whether you want to be notified at launch, collaborate, or just say hello — drop us a message. We read every one.
-          </p>
-          <div class="contact-links">
-            <a href="mailto:clicqr@gmail.com" class="contact-link">
-              <span class="cl-icon">✉</span>
-              clicqr@gmail.com
-            </a>
-            <a href="#" class="contact-link">
-              <span class="cl-icon">◎</span>
-              @clicqr
-            </a>
+          <!-- Left info -->
+          <div class="contact-info reveal">
+            <div class="section-label">Get In Touch</div>
+            <h2 class="section-title" id="contact-heading">Stay Connected.</h2>
+            <p class="contact-desc">
+              Want to be notified at launch, collaborate, or just say hello?
+              We read every message.
+            </p>
+            <div class="contact-links">
+              <a href="mailto:hello@clicqr.com" class="clink">
+                <span class="clink-icon">✉</span>
+                <span>hello@clicqr.com</span>
+              </a>
+              <a href="#" class="clink">
+                <span class="clink-icon">◎</span>
+                <span>@clicqr</span>
+              </a>
+            </div>
           </div>
-        </div>
 
-        <div class="contact-right reveal">
-          <form class="contact-form" id="contactForm" novalidate>
-            <div class="form-group">
-              <label for="cf-name">Your Name</label>
-              <input type="text" id="cf-name" name="name" placeholder="e.g. Aarav Sharma" required autocomplete="name" />
-              <span class="form-error" id="err-name"></span>
-            </div>
-            <div class="form-group">
-              <label for="cf-email">Email Address</label>
-              <input type="email" id="cf-email" name="email" placeholder="you@example.com" required autocomplete="email" />
-              <span class="form-error" id="err-email"></span>
-            </div>
-            <div class="form-group">
-              <label for="cf-msg">Message <span class="optional">(optional)</span></label>
-              <textarea id="cf-msg" name="message" rows="4" placeholder="Tell us anything — a question, a collab idea, or just hello..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary form-submit" id="formSubmit">
-              Send Message
-            </button>
-            <p class="form-success" id="formSuccess" aria-live="polite"></p>
-          </form>
-        </div>
+          <!-- Right form -->
+          <div class="contact-form-wrap reveal" style="--rd:.1s">
+            <form class="contact-form" id="contactForm" novalidate aria-label="Contact form">
 
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="cf-name">Name <span class="req" aria-hidden="true">*</span></label>
+                  <input
+                    type="text"
+                    id="cf-name"
+                    name="name"
+                    placeholder="Your name"
+                    required
+                    autocomplete="name"
+                    aria-describedby="err-name"
+                  />
+                  <span class="form-error" id="err-name" role="alert" aria-live="polite"></span>
+                </div>
+                <div class="form-group">
+                  <label for="cf-email">Email <span class="req" aria-hidden="true">*</span></label>
+                  <input
+                    type="email"
+                    id="cf-email"
+                    name="email"
+                    placeholder="you@example.com"
+                    required
+                    autocomplete="email"
+                    aria-describedby="err-email"
+                  />
+                  <span class="form-error" id="err-email" role="alert" aria-live="polite"></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="cf-msg">
+                  Message
+                  <span class="optional">(optional)</span>
+                </label>
+                <textarea
+                  id="cf-msg"
+                  name="message"
+                  rows="4"
+                  placeholder="A question, a collab idea, or just say hi..."
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-full" id="formSubmit">
+                Send Message
+              </button>
+
+              <p class="form-success" id="formSuccess" aria-live="polite"></p>
+
+            </form>
+          </div>
+
+        </div>
       </div>
     </section>
 
   </main>
 
-  <!-- ══════════════════════════════
+  <!-- ═══════════════════════════════
        FOOTER
-  ══════════════════════════════ -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <a href="#home" class="footer-logo">Clicqr</a>
-        <p>A new fashion label built for the bold. Launching 2026.</p>
+  ═══════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#home" class="footer-logo">Clicqr</a>
+          <p class="footer-tagline">A new fashion label built for the bold. Launching 2026.</p>
+          <div class="footer-social" aria-label="Social media links">
+            <a href="#" class="social-btn" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Twitter / X">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 22.43.36a9 9 0 0 1-2.88 1.1A4.52 4.52 0 0 0 16 0a4.5 4.5 0 0 0-4.49 4.5 4.6 4.6 0 0 0 .12 1.03A12.8 12.8 0 0 1 1.64.88a4.49 4.49 0 0 0 1.4 6 4.4 4.4 0 0 1-2.04-.57v.06a4.5 4.5 0 0 0 3.6 4.41 4.52 4.52 0 0 1-2 .08 4.5 4.5 0 0 0 4.2 3.12A9.04 9.04 0 0 1 0 19.54a12.76 12.76 0 0 0 6.92 2.03c8.3 0 12.85-6.88 12.85-12.85 0-.2 0-.4-.02-.58A9.15 9.15 0 0 0 23 3z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Pinterest">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 12a4 4 0 1 0 8 0 4 4 0 0 0-8 0"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div class="footer-col">
+            <strong class="footer-col-title">Navigate</strong>
+            <ul role="list">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#shop">Shop</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <strong class="footer-col-title">Follow</strong>
+            <ul role="list">
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">Twitter&nbsp;/&nbsp;X</a></li>
+              <li><a href="#">Pinterest</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <strong class="footer-col-title">Legal</strong>
+            <ul role="list">
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Use</a></li>
+              <li><a href="#">Returns</a></li>
+            </ul>
+          </div>
+        </nav>
       </div>
 
-      <div class="footer-links">
-        <div class="fl-col">
-          <strong>Navigate</strong>
-          <a href="#home">Home</a>
-          <a href="#shop">Shop</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <div class="fl-col">
-          <strong>Follow Us</strong>
-          <a href="#" aria-label="Instagram">Instagram</a>
-          <a href="#" aria-label="Twitter/X">Twitter / X</a>
-          <a href="#" aria-label="Pinterest">Pinterest</a>
-        </div>
-        <div class="fl-col">
-          <strong>Legal</strong>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Use</a>
-          <a href="#">Returns Policy</a>
-        </div>
+      <div class="footer-bottom">
+        <p class="footer-copy" id="footerYear">© 2026 Clicqr. All rights reserved.</p>
+        <p class="footer-made">Handcrafted with purpose.</p>
       </div>
-    </div>
 
-    <div class="footer-bottom container">
-      <p>© 2026 Clicqr. All rights reserved.</p>
-      <p class="footer-made">Handcrafted with purpose.</p>
     </div>
   </footer>
 
   <!-- Toast notification -->
-  <div id="toast" role="status" aria-live="polite"></div>
+  <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <script src="script.js"></script>
 </body>
