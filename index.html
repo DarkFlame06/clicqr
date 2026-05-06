@@ -3,187 +3,367 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLICQR | Luxury Fashion Brand</title>
+    <title>CLICQR — The Future of Luxury</title>
+    <meta name="description" content="CLICQR: Where haute couture meets digital innovation. Discover an unparalleled luxury fashion experience.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo-container">
-                <a href="#" class="logo" id="logo">CLICQR</a>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-logo">CLICQR</div>
+            <div class="preloader-bar">
+                <div class="preloader-fill" id="preloader-fill"></div>
             </div>
-            <div class="nav-links">
-                <a href="#collections">Collections</a>
-                <a href="#features">Atelier</a>
-                <a href="#testimonials">Journal</a>
+            <div class="preloader-text">Entering the experience</div>
+        </div>
+    </div>
+
+    <!-- Mouse Spotlight -->
+    <div class="mouse-spotlight" id="mouse-spotlight"></div>
+
+    <!-- Floating Particles Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo" id="nav-logo">
+                <span class="logo-letter" data-delay="0">C</span>
+                <span class="logo-letter" data-delay="1">L</span>
+                <span class="logo-letter" data-delay="2">I</span>
+                <span class="logo-letter" data-delay="3">C</span>
+                <span class="logo-letter" data-delay="4">Q</span>
+                <span class="logo-letter" data-delay="5">R</span>
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="#vision" class="nav-link">Vision</a>
+                <a href="#collection" class="nav-link">Collection</a>
+                <a href="#atelier" class="nav-link">Atelier</a>
+                <a href="#world" class="nav-link">World</a>
             </div>
-            <div class="nav-icons">
-                <button class="icon-btn" aria-label="Search">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                </button>
-                <button class="icon-btn" aria-label="Cart">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <div class="nav-actions">
+                <button class="nav-btn" id="menu-toggle" aria-label="Menu">
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <header class="hero" id="home">
-        <div class="hero-bg">
-            <img src="images/hero_bg.png" alt="Luxury Fashion Model">
-            <div class="hero-overlay"></div>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-depth-layer hero-layer-back"></div>
+        <div class="hero-depth-layer hero-layer-mid">
+            <div class="hero-glow"></div>
         </div>
+        <div class="hero-depth-layer hero-layer-front">
+            <div class="hero-radial-gradient"></div>
+        </div>
+
         <div class="hero-content">
-            <h1 class="hero-title fade-in-up">Elegance Redefined</h1>
-            <p class="hero-subtitle fade-in-up delay-1">Discover the new standard of contemporary luxury.</p>
-            <div class="hero-actions fade-in-up delay-2">
-                <a href="#collections" class="btn btn-primary">Explore Collection</a>
-                <a href="#features" class="btn btn-secondary">Our Heritage</a>
+            <div class="hero-eyebrow" id="hero-eyebrow">
+                <span class="eyebrow-line"></span>
+                <span class="eyebrow-text">SPRING / SUMMER 2026</span>
+                <span class="eyebrow-line"></span>
+            </div>
+            <h1 class="hero-title" id="hero-title">
+                <span class="title-line"><span class="title-word">THE</span> <span class="title-word">FUTURE</span></span>
+                <span class="title-line"><span class="title-word">OF</span> <span class="title-word accent">LUXURY</span></span>
+            </h1>
+            <p class="hero-subtitle" id="hero-subtitle">Where haute couture meets digital innovation</p>
+            <div class="hero-cta" id="hero-cta">
+                <a href="#collection" class="btn-glow">
+                    <span class="btn-text">Explore Collection</span>
+                    <span class="btn-shine"></span>
+                </a>
             </div>
         </div>
-    </header>
 
-    <section class="features section-padding" id="features">
-        <div class="container">
-            <div class="section-header fade-in-up">
-                <span class="eyebrow">The Atelier</span>
-                <h2>Crafted to Perfection</h2>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card fade-in-up delay-1">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-                    </div>
-                    <h3>Finest Materials</h3>
-                    <p>Sourced globally, crafted locally. Only the most exceptional materials make the cut.</p>
-                </div>
-                <div class="feature-card fade-in-up delay-2">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                    </div>
-                    <h3>Timeless Design</h3>
-                    <p>Aesthetic silhouettes designed to transcend seasons and fleeting trends.</p>
-                </div>
-                <div class="feature-card fade-in-up delay-3">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-                    </div>
-                    <h3>Exclusivity</h3>
-                    <p>Limited production runs ensure your piece remains uniquely yours.</p>
-                </div>
-            </div>
+        <div class="hero-scroll-indicator" id="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span class="scroll-text">Scroll to discover</span>
+        </div>
+
+        <div class="hero-floating-tag tag-left" id="tag-left">
+            <span>EST. 2024</span>
+        </div>
+        <div class="hero-floating-tag tag-right" id="tag-right">
+            <span>PARIS · MILAN · TOKYO</span>
         </div>
     </section>
 
-    <section class="collections section-padding" id="collections">
-        <div class="container">
-            <div class="section-header fade-in-up">
-                <span class="eyebrow">Curated Selection</span>
-                <h2>Iconic Pieces</h2>
-            </div>
-            <div class="product-grid">
-                <div class="product-card fade-in-up">
-                    <div class="product-image-wrapper">
-                        <img src="images/product_1.png" alt="Noir Leather Handbag" class="product-img parallax-img">
-                        <div class="product-overlay">
-                            <button class="btn btn-quick-add">Quick View</button>
+    <!-- Vision Section -->
+    <section class="vision" id="vision">
+        <div class="section-container">
+            <div class="vision-grid">
+                <div class="vision-text">
+                    <span class="section-eyebrow">Our Vision</span>
+                    <h2 class="vision-heading">
+                        <span class="reveal-line">Redefining what</span>
+                        <span class="reveal-line">luxury <em>means</em></span>
+                    </h2>
+                    <p class="vision-description reveal-text">
+                        CLICQR exists at the intersection of timeless elegance and bold innovation. 
+                        Every piece is a dialogue between heritage craftsmanship and the raw energy 
+                        of contemporary culture.
+                    </p>
+                    <div class="vision-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="47">0</span>
+                            <span class="stat-label">Countries</span>
                         </div>
-                    </div>
-                    <div class="product-info">
-                        <h3>Noir Leather Handbag</h3>
-                        <p class="price">$1,250</p>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="12">0</span>
+                            <span class="stat-label">Ateliers</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="200">0</span>
+                            <span class="stat-label">Artisans</span>
+                        </div>
                     </div>
                 </div>
-                <div class="product-card fade-in-up delay-1">
-                    <div class="product-image-wrapper">
-                        <img src="images/product_2.png" alt="Silver Minimalist Watch" class="product-img parallax-img">
-                        <div class="product-overlay">
-                            <button class="btn btn-quick-add">Quick View</button>
-                        </div>
+                <div class="vision-image-stack">
+                    <div class="vision-img-wrapper img-1">
+                        <img src="images/hero_bg.png" alt="CLICQR Vision">
+                        <div class="img-overlay"></div>
                     </div>
-                    <div class="product-info">
-                        <h3>L'Heure Silver Watch</h3>
-                        <p class="price">$890</p>
-                    </div>
-                </div>
-                <div class="product-card fade-in-up delay-2">
-                    <div class="product-image-wrapper">
-                        <img src="images/product_3.png" alt="Gold Accent Sunglasses" class="product-img parallax-img">
-                        <div class="product-overlay">
-                            <button class="btn btn-quick-add">Quick View</button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3>Soleil Sunglasses</h3>
-                        <p class="price">$420</p>
+                    <div class="vision-img-wrapper img-2">
+                        <img src="images/product_1.png" alt="CLICQR Craftsmanship">
+                        <div class="img-overlay"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="testimonials section-padding" id="testimonials">
-        <div class="container">
-            <div class="section-header text-center fade-in-up">
-                <span class="eyebrow">Voices</span>
-                <h2>What Connoisseurs Say</h2>
+    <!-- Collection Section -->
+    <section class="collection" id="collection">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-eyebrow">Curated Selection</span>
+                <h2 class="section-title">
+                    <span class="reveal-line">Iconic</span>
+                    <span class="reveal-line">Pieces</span>
+                </h2>
             </div>
-            <div class="testimonial-slider fade-in-up delay-1">
-                <div class="testimonial-card active">
-                    <div class="quote-icon">"</div>
-                    <p class="testimonial-text">CLICQR has redefined my wardrobe. The attention to detail is simply unmatched in modern fashion.</p>
-                    <p class="testimonial-author">- Elena V., Paris</p>
+            <div class="collection-grid">
+                <div class="product-card-3d" data-tilt>
+                    <div class="card-inner">
+                        <div class="card-image">
+                            <img src="images/product_1.png" alt="Noir Leather Handbag">
+                            <div class="card-glow"></div>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Accessories</span>
+                            <h3 class="card-title">Noir Leather Handbag</h3>
+                            <span class="card-price">$1,250</span>
+                        </div>
+                        <div class="card-shine"></div>
+                    </div>
+                </div>
+                <div class="product-card-3d" data-tilt>
+                    <div class="card-inner">
+                        <div class="card-image">
+                            <img src="images/product_2.png" alt="L'Heure Silver Watch">
+                            <div class="card-glow"></div>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Timepieces</span>
+                            <h3 class="card-title">L'Heure Silver Watch</h3>
+                            <span class="card-price">$890</span>
+                        </div>
+                        <div class="card-shine"></div>
+                    </div>
+                </div>
+                <div class="product-card-3d" data-tilt>
+                    <div class="card-inner">
+                        <div class="card-image">
+                            <img src="images/product_3.png" alt="Soleil Sunglasses">
+                            <div class="card-glow"></div>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Eyewear</span>
+                            <h3 class="card-title">Soleil Sunglasses</h3>
+                            <span class="card-price">$420</span>
+                        </div>
+                        <div class="card-shine"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="container">
+    <!-- Atelier Section -->
+    <section class="atelier" id="atelier">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-eyebrow">The Atelier</span>
+                <h2 class="section-title">
+                    <span class="reveal-line">Crafted to</span>
+                    <span class="reveal-line">Perfection</span>
+                </h2>
+            </div>
+            <div class="atelier-features">
+                <div class="feature-row">
+                    <div class="feature-block glass-card">
+                        <div class="feature-icon-wrap">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1">
+                                <path d="M24 4L4 14l20 10 20-10L24 4z"/>
+                                <path d="M4 34l20 10 20-10"/>
+                                <path d="M4 24l20 10 20-10"/>
+                            </svg>
+                        </div>
+                        <h3>Finest Materials</h3>
+                        <p>Sourced from the world's most exclusive suppliers. Every thread, every hide — handpicked for perfection.</p>
+                    </div>
+                    <div class="feature-block glass-card">
+                        <div class="feature-icon-wrap">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1">
+                                <circle cx="24" cy="24" r="20"/>
+                                <polyline points="24 12 24 24 32 28"/>
+                            </svg>
+                        </div>
+                        <h3>Timeless Design</h3>
+                        <p>Silhouettes engineered to transcend seasons. Pieces that become more relevant with time.</p>
+                    </div>
+                    <div class="feature-block glass-card">
+                        <div class="feature-icon-wrap">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1">
+                                <path d="M41.18 26.82l-14.36 14.36a4 4 0 01-5.64 0L4 24V4h20l17.18 17.18a4 4 0 010 5.64z"/>
+                                <circle cx="14" cy="14" r="2"/>
+                            </svg>
+                        </div>
+                        <h3>Exclusivity</h3>
+                        <p>Limited production. Numbered editions. Your piece is yours alone — never mass-produced, always singular.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- World Section (Testimonials) -->
+    <section class="world" id="world">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-eyebrow">The CLICQR World</span>
+                <h2 class="section-title">
+                    <span class="reveal-line">Voices of</span>
+                    <span class="reveal-line">Distinction</span>
+                </h2>
+            </div>
+            <div class="testimonials-track">
+                <div class="testimonial-card glass-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">CLICQR has redefined my entire relationship with fashion. The attention to detail is simply unmatched in modern luxury.</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <span class="author-name">Elena Vassiliev</span>
+                            <span class="author-title">Paris</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card glass-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">Every piece tells a story. I have never worn anything that makes me feel this powerful, this refined, this alive.</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <span class="author-name">Marcus Chen</span>
+                            <span class="author-title">Tokyo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card glass-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">The future of luxury isn't loud — it's precise. CLICQR understands this on a level no other house does.</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <span class="author-name">Amara Okonkwo</span>
+                            <span class="author-title">Milan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="footer-marquee">
+            <div class="marquee-track">
+                <span>CLICQR</span>
+                <span>·</span>
+                <span>LUXURY</span>
+                <span>·</span>
+                <span>INNOVATION</span>
+                <span>·</span>
+                <span>HERITAGE</span>
+                <span>·</span>
+                <span>CLICQR</span>
+                <span>·</span>
+                <span>LUXURY</span>
+                <span>·</span>
+                <span>INNOVATION</span>
+                <span>·</span>
+                <span>HERITAGE</span>
+                <span>·</span>
+            </div>
+        </div>
+        <div class="section-container">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h2 class="footer-logo">CLICQR</h2>
-                    <p>Elevating contemporary lifestyle with uncompromised luxury.</p>
+                    <p>Elevating contemporary lifestyle through uncompromised luxury and digital innovation.</p>
                 </div>
-                <div class="footer-links">
+                <div class="footer-col">
                     <h3>Explore</h3>
                     <ul>
                         <li><a href="#">New Arrivals</a></li>
                         <li><a href="#">The Atelier</a></li>
                         <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Careers</a></li>
                     </ul>
                 </div>
-                <div class="footer-links">
+                <div class="footer-col">
                     <h3>Client Services</h3>
                     <ul>
                         <li><a href="#">Contact Us</a></li>
                         <li><a href="#">Shipping & Returns</a></li>
                         <li><a href="#">Care Guide</a></li>
+                        <li><a href="#">Size Guide</a></li>
                     </ul>
                 </div>
-                <div class="footer-newsletter">
+                <div class="footer-col">
                     <h3>The Inner Circle</h3>
-                    <p>Subscribe to receive updates, access to exclusive deals, and more.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Enter your email address" required>
-                        <button type="submit" class="btn-submit">Subscribe</button>
+                    <p class="newsletter-text">Be the first to access exclusive releases and private events.</p>
+                    <form class="newsletter-form" id="newsletter-form">
+                        <div class="input-wrapper">
+                            <input type="email" placeholder="Your email address" required id="newsletter-email">
+                            <button type="submit" class="btn-subscribe" id="btn-subscribe">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 CLICQR. All rights reserved.</p>
                 <div class="social-links">
-                    <a href="#" aria-label="Instagram">IG</a>
-                    <a href="#" aria-label="Twitter">TW</a>
-                    <a href="#" aria-label="Pinterest">PI</a>
+                    <a href="#" aria-label="Instagram">Instagram</a>
+                    <a href="#" aria-label="Twitter">Twitter</a>
+                    <a href="#" aria-label="Pinterest">Pinterest</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
