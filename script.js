@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
+fdocument.addEventListener('DOMContentLoaded', () => {
     // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
-    
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
@@ -32,16 +32,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Simple Parallax Effect for Images
     const parallaxImages = document.querySelectorAll('.parallax-img');
-    
+
     window.addEventListener('scroll', () => {
         parallaxImages.forEach(img => {
             const speed = 0.05;
             const rect = img.getBoundingClientRect();
             // Apply parallax only when the image is in the viewport
-            if(rect.top < window.innerHeight && rect.bottom > 0) {
-                 const offset = (rect.top - window.innerHeight/2) * speed;
-                 // Since we have a hover scale effect, we only translate here
-                 img.style.transform = `translateY(${offset}px) scale(1.05)`;
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const offset = (rect.top - window.innerHeight / 2) * speed;
+                // Since we have a hover scale effect, we only translate here
+                img.style.transform = `translateY(${offset}px) scale(1.05)`;
             }
         });
     });

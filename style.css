@@ -3,15 +3,16 @@
     --color-surface: #111111;
     --color-text: #ffffff;
     --color-text-muted: #888888;
-    --color-accent: #d4af37; /* Metallic gold */
+    --color-accent: #d4af37;
+    /* Metallic gold */
     --color-border: #333333;
-    
+
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Montserrat', sans-serif;
-    
+
     --transition-fast: 0.3s ease;
     --transition-slow: 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-    
+
     --nav-height: 80px;
 }
 
@@ -56,7 +57,10 @@ a {
 }
 
 /* Typography */
-h1, h2, h3, .logo {
+h1,
+h2,
+h3,
+.logo {
     font-family: var(--font-heading);
     font-weight: 400;
 }
@@ -77,14 +81,29 @@ h2 {
 
 /* Animations */
 @keyframes letter-spread {
-    0% { letter-spacing: -2px; opacity: 0; }
-    100% { letter-spacing: 4px; opacity: 1; }
+    0% {
+        letter-spacing: -2px;
+        opacity: 0;
+    }
+
+    100% {
+        letter-spacing: 4px;
+        opacity: 1;
+    }
 }
 
 @keyframes glow {
-    0% { text-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
-    50% { text-shadow: 0 0 20px rgba(212, 175, 55, 0.6); }
-    100% { text-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
+    0% {
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    }
+
+    50% {
+        text-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+    }
+
+    100% {
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    }
 }
 
 /* Navbar */
@@ -212,7 +231,7 @@ h2 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(5,5,5,0.9) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(5, 5, 5, 0.9) 100%);
 }
 
 .hero-content {
@@ -289,9 +308,17 @@ h2 {
     transform: translateY(0);
 }
 
-.delay-1 { transition-delay: 0.2s; }
-.delay-2 { transition-delay: 0.4s; }
-.delay-3 { transition-delay: 0.6s; }
+.delay-1 {
+    transition-delay: 0.2s;
+}
+
+.delay-2 {
+    transition-delay: 0.4s;
+}
+
+.delay-3 {
+    transition-delay: 0.6s;
+}
 
 /* Features */
 .section-header {
@@ -315,7 +342,7 @@ h2 {
 
 .feature-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     border-color: var(--color-accent);
 }
 
@@ -367,7 +394,7 @@ h2 {
 .product-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.4);
     opacity: 0;
     transition: opacity var(--transition-fast);
     display: flex;
@@ -380,9 +407,9 @@ h2 {
 }
 
 .btn-quick-add {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     color: #fff;
     padding: 0.8rem 2rem;
     transform: translateY(20px);
@@ -488,7 +515,8 @@ h2 {
     max-width: 300px;
 }
 
-.footer-links h3, .footer-newsletter h3 {
+.footer-links h3,
+.footer-newsletter h3 {
     font-size: 1rem;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
