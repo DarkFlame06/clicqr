@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.min.js"></script>
 </head>
 <body>
 
@@ -64,6 +65,11 @@
         <div class="hero-depth-layer hero-layer-front">
             <div class="hero-radial-gradient"></div>
         </div>
+        <!-- 3D CSS Rings -->
+        <div class="hero-3d-ring"></div>
+        <div class="hero-3d-ring-2"></div>
+        <!-- Three.js Canvas -->
+        <canvas id="threejs-hero"></canvas>
 
         <div class="hero-content">
             <div class="hero-eyebrow" id="hero-eyebrow">
@@ -152,46 +158,79 @@
                 </h2>
             </div>
             <div class="collection-grid">
-                <div class="product-card-3d" data-tilt>
+                <!-- Card 1 -->
+                <div class="product-card-3d" id="card-1">
                     <div class="card-inner">
-                        <div class="card-image">
-                            <img src="images/product_1.png" alt="Noir Leather Handbag">
-                            <div class="card-glow"></div>
+                        <div class="card-face card-face-front">
+                            <div class="card-image">
+                                <img src="images/product_1.png" alt="Noir Leather Handbag">
+                                <div class="card-glow"></div>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-category">Accessories</span>
+                                <h3 class="card-title">Noir Leather Handbag</h3>
+                                <span class="card-price">$1,250</span>
+                            </div>
+                            <div class="card-shine"></div>
                         </div>
-                        <div class="card-content">
-                            <span class="card-category">Accessories</span>
-                            <h3 class="card-title">Noir Leather Handbag</h3>
-                            <span class="card-price">$1,250</span>
+                        <div class="card-face card-face-back">
+                            <div class="card-back-orb"></div>
+                            <span class="card-back-label">Accessories · Limited</span>
+                            <h3 class="card-back-title">Noir Leather Handbag</h3>
+                            <span class="card-back-price">$1,250</span>
+                            <p class="card-back-desc">Hand-stitched full-grain leather. Gold-plated hardware. Each piece individually numbered.</p>
+                            <button class="card-back-btn">Add to Collection</button>
                         </div>
-                        <div class="card-shine"></div>
                     </div>
                 </div>
-                <div class="product-card-3d" data-tilt>
+                <!-- Card 2 -->
+                <div class="product-card-3d" id="card-2">
                     <div class="card-inner">
-                        <div class="card-image">
-                            <img src="images/product_2.png" alt="L'Heure Silver Watch">
-                            <div class="card-glow"></div>
+                        <div class="card-face card-face-front">
+                            <div class="card-image">
+                                <img src="images/product_2.png" alt="L'Heure Silver Watch">
+                                <div class="card-glow"></div>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-category">Timepieces</span>
+                                <h3 class="card-title">L'Heure Silver Watch</h3>
+                                <span class="card-price">$890</span>
+                            </div>
+                            <div class="card-shine"></div>
                         </div>
-                        <div class="card-content">
-                            <span class="card-category">Timepieces</span>
-                            <h3 class="card-title">L'Heure Silver Watch</h3>
-                            <span class="card-price">$890</span>
+                        <div class="card-face card-face-back">
+                            <div class="card-back-orb"></div>
+                            <span class="card-back-label">Timepieces · Edition No.7</span>
+                            <h3 class="card-back-title">L'Heure Silver Watch</h3>
+                            <span class="card-back-price">$890</span>
+                            <p class="card-back-desc">Swiss-made automatic movement. Sapphire crystal glass. 72-hour power reserve.</p>
+                            <button class="card-back-btn">Add to Collection</button>
                         </div>
-                        <div class="card-shine"></div>
                     </div>
                 </div>
-                <div class="product-card-3d" data-tilt>
+                <!-- Card 3 -->
+                <div class="product-card-3d" id="card-3">
                     <div class="card-inner">
-                        <div class="card-image">
-                            <img src="images/product_3.png" alt="Soleil Sunglasses">
-                            <div class="card-glow"></div>
+                        <div class="card-face card-face-front">
+                            <div class="card-image">
+                                <img src="images/product_3.png" alt="Soleil Sunglasses">
+                                <div class="card-glow"></div>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-category">Eyewear</span>
+                                <h3 class="card-title">Soleil Sunglasses</h3>
+                                <span class="card-price">$420</span>
+                            </div>
+                            <div class="card-shine"></div>
                         </div>
-                        <div class="card-content">
-                            <span class="card-category">Eyewear</span>
-                            <h3 class="card-title">Soleil Sunglasses</h3>
-                            <span class="card-price">$420</span>
+                        <div class="card-face card-face-back">
+                            <div class="card-back-orb"></div>
+                            <span class="card-back-label">Eyewear · Polarized</span>
+                            <h3 class="card-back-title">Soleil Sunglasses</h3>
+                            <span class="card-back-price">$420</span>
+                            <p class="card-back-desc">Handcrafted Italian acetate. 100% UV400 polarized lenses. Engraved serial number.</p>
+                            <button class="card-back-btn">Add to Collection</button>
                         </div>
-                        <div class="card-shine"></div>
                     </div>
                 </div>
             </div>
@@ -211,32 +250,37 @@
             <div class="atelier-features">
                 <div class="feature-row">
                     <div class="feature-block glass-card">
-                        <div class="feature-icon-wrap">
-                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1">
-                                <path d="M24 4L4 14l20 10 20-10L24 4z"/>
-                                <path d="M4 34l20 10 20-10"/>
-                                <path d="M4 24l20 10 20-10"/>
-                            </svg>
+                        <div class="feature-icon-3d">
+                            <div class="icon-cube">
+                                <div class="icon-face">
+                                    <svg viewBox="0 0 48 48"><path d="M24 4L4 14l20 10 20-10L24 4z"/><path d="M4 34l20 10 20-10"/><path d="M4 24l20 10 20-10"/></svg>
+                                </div>
+                                <div class="icon-face icon-face-back">✦</div>
+                            </div>
                         </div>
                         <h3>Finest Materials</h3>
                         <p>Sourced from the world's most exclusive suppliers. Every thread, every hide — handpicked for perfection.</p>
                     </div>
                     <div class="feature-block glass-card">
-                        <div class="feature-icon-wrap">
-                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1">
-                                <circle cx="24" cy="24" r="20"/>
-                                <polyline points="24 12 24 24 32 28"/>
-                            </svg>
+                        <div class="feature-icon-3d">
+                            <div class="icon-cube">
+                                <div class="icon-face">
+                                    <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20"/><polyline points="24 12 24 24 32 28"/></svg>
+                                </div>
+                                <div class="icon-face icon-face-back">◈</div>
+                            </div>
                         </div>
                         <h3>Timeless Design</h3>
                         <p>Silhouettes engineered to transcend seasons. Pieces that become more relevant with time.</p>
                     </div>
                     <div class="feature-block glass-card">
-                        <div class="feature-icon-wrap">
-                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1">
-                                <path d="M41.18 26.82l-14.36 14.36a4 4 0 01-5.64 0L4 24V4h20l17.18 17.18a4 4 0 010 5.64z"/>
-                                <circle cx="14" cy="14" r="2"/>
-                            </svg>
+                        <div class="feature-icon-3d">
+                            <div class="icon-cube">
+                                <div class="icon-face">
+                                    <svg viewBox="0 0 48 48"><path d="M41.18 26.82l-14.36 14.36a4 4 0 01-5.64 0L4 24V4h20l17.18 17.18a4 4 0 010 5.64z"/><circle cx="14" cy="14" r="2"/></svg>
+                                </div>
+                                <div class="icon-face icon-face-back">⬡</div>
+                            </div>
                         </div>
                         <h3>Exclusivity</h3>
                         <p>Limited production. Numbered editions. Your piece is yours alone — never mass-produced, always singular.</p>
